@@ -23,14 +23,17 @@ jobs:
       run: mvn clean verify
       working-directory: ./back
 
-    # - name: Upload JaCoCo coverage report
-    #   uses: actions/upload-artifact@v4
-    #   with:
-    #     name: jacoco-report
-    #     path: back/target/site/jacoco/
-  
-    - name: Generate JaCoCo Badge and Summary
-      uses: madrapps/jacoco-report@v1.6.1
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v4
       with:
-        paths: back/target/site/jacoco/jacoco.xml
-        token: ${{ secrets.GITHUB_TOKEN }}
+        name: junit-results
+        path: back/target/surefire-reports/
+
+    - name: Publish Test Report
+      if: always()
+      uses: dorny/test-reporter@v1
+      with:
+        name: Test Results
+        path: back/target/surefire-reports/*.xml
+        reporter: java-junit
