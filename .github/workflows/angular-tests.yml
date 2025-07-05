@@ -27,9 +27,8 @@ jobs:
         run: npm run test -- --code-coverage --browsers=ChromeHeadless --watch=false
         working-directory: ./front
 
-      - name: Publish test results
-        uses: dorny/test-reporter@v1
+      - name: Upload frontend coverage report
+        uses: actions/upload-artifact@v4
         with:
-          name: Angular Unit Tests
-          path: front/coverage/bobapp/lcov-report/
-          reporter: jest-junit
+          name: front-coverage
+          path: front/coverage/
