@@ -31,5 +31,4 @@ jobs:
         uses: dorny/test-reporter@v1
         with:
           name: Angular Unit Tests
-          path: front/coverage/
-          reporter: jest-junit
+          path: front/coverage/bobapp/lcov-report/
