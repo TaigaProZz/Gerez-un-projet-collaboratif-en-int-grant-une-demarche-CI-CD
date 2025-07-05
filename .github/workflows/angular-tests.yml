@@ -1,0 +1,35 @@
+name: Angular Tests
+
+on:
+  push:
+    branches:
+      - main 
+  pull_request:
+  
+jobs:
+ frontend-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./front
+
+        
+      - name: Run frontend tests and generate coverage
+        run: npm run test -- --code-coverage --browsers=ChromeHeadless --watch=false
+        working-directory: ./front
+
+      - name: Publish test results
+        uses: dorny/test-reporter@v1
+        with:
+          name: Angular Unit Tests
+          path: front/test-results/test-results.xml
+          reporter: jest-junit
