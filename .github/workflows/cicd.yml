@@ -1,4 +1,4 @@
-name: CI/CD
+name: Spring Boot tests
 on:
   push:
     branches: [ "main" ]
@@ -19,7 +19,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     
-    - name: Run backend tests and generate coverage
+    - name: Run tests and generate coverage
       run: mvn clean verify
       working-directory: ./back
 
