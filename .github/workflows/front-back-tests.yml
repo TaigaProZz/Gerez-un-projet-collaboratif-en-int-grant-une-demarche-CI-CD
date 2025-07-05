@@ -36,7 +36,7 @@ jobs:
       - name: SonarQube Scan
         run: |
           npx sonar-scanner \
-            -Dsonar.projectKey=TaigaProZz_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD \
+            -Dsonar.projectKey=angular_taigaprozz_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD \
             -Dsonar.organization=taigaprozz \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.sources=front/src \
@@ -81,7 +81,7 @@ jobs:
     - name: Run SonarQube Scan
       run: |
         npx sonar-scanner \
-          -Dsonar.projectKey=TaigaProZz_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD \
+          -Dsonar.projectKey=back_taigaprozz_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD \
           -Dsonar.organization=taigaprozz \
           -Dsonar.host.url=https://sonarcloud.io \
           -Dsonar.sources=back/src/main/java \
