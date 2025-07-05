@@ -42,7 +42,7 @@ jobs:
             -Dsonar.sources=front/src \
             -Dsonar.tests=front/src \
             -Dsonar.test.inclusions=front/src/**/*.spec.ts \
-            -Dsonar.typescript.lcov.reportPaths=front/coverage/bobapp/lcov.info \
+            -Dsonar.typescript.lcov.reportPaths=front/coverage/lcov.info \
             -Dsonar.exclusions=front/src/polyfills.ts,front/src/environments/**/*.ts
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -88,6 +88,6 @@ jobs:
           -Dsonar.java.binaries=back/target/classes \
           -Dsonar.tests=back/src/test/java \
           -Dsonar.junit.reportPaths=back/target/surefire-reports \
-          -Dsonar.jacoco.reportPaths=back/target/jacoco.exec
+          -Dsonar.coverage.jacoco.xmlReportPaths=back/target/site/jacoco/jacoco.xml
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
