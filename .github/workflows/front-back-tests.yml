@@ -36,8 +36,8 @@ jobs:
       - name: SonarQube Scan
         run: |
           npx sonar-scanner \
-            -Dsonar.projectKey=nolloV_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD \
-            -Dsonar.organization=nollov \
+            -Dsonar.projectKey=TaigaProZz_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD \
+            -Dsonar.organization=taigaprozz \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.sources=front/src \
             -Dsonar.tests=front/src \
@@ -75,8 +75,8 @@ jobs:
     - name: SonarQube Scan
       run: |
         npx sonar-scanner \
-          -Dsonar.projectKey=nolloV_BackendProjectKey \
-          -Dsonar.organization=nollov \
+          -Dsonar.projectKey=TaigaProZz_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD \
+          -Dsonar.organization=taigaprozz \
           -Dsonar.host.url=https://sonarcloud.io \
           -Dsonar.sources=back/src/main/java \
           -Dsonar.tests=back/src/test/java \
