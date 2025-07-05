@@ -34,9 +34,16 @@ jobs:
           path: front/coverage/
 
       - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v5
-        with:
-          projectBaseDir: .
+        run: |
+          npx sonar-scanner \
+            -Dsonar.projectKey=nolloV_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD \
+            -Dsonar.organization=nollov \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.sources=front/src \
+            -Dsonar.tests=front/src \
+            -Dsonar.test.inclusions=front/src/**/*.spec.ts \
+            -Dsonar.typescript.lcov.reportPaths=front/coverage/bobapp/lcov.info \
+            -Dsonar.exclusions=front/src/polyfills.ts,front/src/environments/**/*.ts
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
@@ -66,8 +73,14 @@ jobs:
         path: back/target/site/jacoco
 
     - name: SonarQube Scan
-      uses: SonarSource/sonarqube-scan-action@v5
-      with:
-        projectBaseDir: .
-      env:
+      run: |
+        npx sonar-scanner \
+          -Dsonar.projectKey=nolloV_BackendProjectKey \
+          -Dsonar.organization=nollov \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.sources=back/src/main/java \
+          -Dsonar.tests=back/src/test/java \
+          -Dsonar.junit.reportPaths=back/target/surefire-reports \
+          -Dsonar.jacoco.reportPaths=back/target/jacoco.exec
+        env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
