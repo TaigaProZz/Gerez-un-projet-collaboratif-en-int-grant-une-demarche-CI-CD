@@ -31,5 +31,5 @@ jobs:
         uses: dorny/test-reporter@v1
         with:
           name: Angular Unit Tests
-          path: front/test-results/test-results.xml
+          path: front/coverage/
           reporter: jest-junit
