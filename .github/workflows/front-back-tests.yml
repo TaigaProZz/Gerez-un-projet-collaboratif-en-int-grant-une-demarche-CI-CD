@@ -86,5 +86,6 @@ jobs:
           -Dsonar.java.binaries=target/classes
           -Dsonar.junit.reportPaths=test-classes
           -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+          -Dsonar.qualitygate.wait=true
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
