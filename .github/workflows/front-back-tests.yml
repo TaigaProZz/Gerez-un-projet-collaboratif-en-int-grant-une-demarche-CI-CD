@@ -72,8 +72,13 @@ jobs:
         name: springboot-results
         path: back/target/site/jacoco
 
-    - name: SonarQube Scan
-      working-directory: ./back
+    - name: Set up JDK 17 for SonarQube
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: Run SonarQube Scan
       run: |
         npx sonar-scanner \
           -Dsonar.projectKey=TaigaProZz_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD \
@@ -83,5 +88,5 @@ jobs:
           -Dsonar.tests=back/src/test/java \
           -Dsonar.junit.reportPaths=back/target/surefire-reports \
           -Dsonar.jacoco.reportPaths=back/target/jacoco.exec
-        env:
+      env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
