@@ -34,10 +34,12 @@ jobs:
           path: front/coverage/
 
       - name: SonarQube Scan
-        run: |
-          npx sonar-scanner \
-            -Dsonar.projectKey=angular_taigaprozz_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD \
-            -Dsonar.organization=taigaprozz \
+        uses: sonarsource/sonarqube-scan-action@v4
+        with:
+          projectBaseDir: ./front
+          args: >
+            -Dsonar.projectKey=angular_taigaprozz_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD 
+            -Dsonar.organization=taigaprozz
             -Dsonar.sources=src
             -Dsonar.exclusions=node_modules/**,coverage/**,dist/**
             -Dsonar.tests=src
@@ -72,22 +74,17 @@ jobs:
         name: springboot-results
         path: back/target/site/jacoco
 
-    - name: Set up JDK 17 for SonarQube
-      uses: actions/setup-java@v4
+    - name: Run SonarCloud analysis for Backend
+      uses: sonarsource/sonarqube-scan-action@v4
       with:
-        java-version: '17'
-        distribution: 'temurin'
-
-    - name: Run SonarQube Scan
-      run: |
-        npx sonar-scanner \
-          -Dsonar.projectKey=back_taigaprozz_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD \
-          -Dsonar.organization=taigaprozz \
-          -Dsonar.host.url=https://sonarcloud.io \
-          -Dsonar.sources=back/src/main/java \
-          -Dsonar.java.binaries=back/target/classes \
-          -Dsonar.tests=back/src/test/java \
-          -Dsonar.junit.reportPaths=back/target/surefire-reports \
-          -Dsonar.coverage.jacoco.xmlReportPaths=back/target/site/jacoco/jacoco.xml
+        projectBaseDir: ./back
+        args: >
+          -Dsonar.projectKey=back_taigaprozz_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD
+          -Dsonar.organization=taigaprozz
+          -Dsonar.sources=src
+          -Dsonar.host.url=https://sonarcloud.io
+          -Dsonar.java.binaries=target/classes
+          -Dsonar.junit.reportPaths=test-classes
+          -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
