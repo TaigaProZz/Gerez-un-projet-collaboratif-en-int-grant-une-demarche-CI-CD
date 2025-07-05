@@ -85,6 +85,7 @@ jobs:
           -Dsonar.organization=taigaprozz \
           -Dsonar.host.url=https://sonarcloud.io \
           -Dsonar.sources=back/src/main/java \
+          -Dsonar.java.binaries=target/classes \
           -Dsonar.tests=back/src/test/java \
           -Dsonar.junit.reportPaths=back/target/surefire-reports \
           -Dsonar.jacoco.reportPaths=back/target/jacoco.exec
