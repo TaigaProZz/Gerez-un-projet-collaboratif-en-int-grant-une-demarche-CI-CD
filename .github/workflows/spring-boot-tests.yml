@@ -29,11 +29,4 @@ jobs:
       with:
         name: junit-results
         path: back/target/surefire-reports/
-
-    - name: Publish Test Report
-      if: always()
-      uses: dorny/test-reporter@v1
-      with:
-        name: Test Results
-        path: back/target/surefire-reports/*.xml
-        reporter: java-junit
+        
