@@ -1,4 +1,4 @@
-name: Angular Tests
+name: Angular and Spring Boot Tests
 
 on:
   push:
@@ -30,5 +30,31 @@ jobs:
       - name: Upload frontend coverage report
         uses: actions/upload-artifact@v4
         with:
-          name: front-coverage
+          name: angular-results
           path: front/coverage/
+
+
+ spring-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up JDK 11
+      uses: actions/setup-java@v4
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: maven
+    
+    - name: Run tests and generate coverage
+      run: mvn clean verify
+      working-directory: ./back
+
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: springboot-results
+        path: back/target/surefire-reports/
