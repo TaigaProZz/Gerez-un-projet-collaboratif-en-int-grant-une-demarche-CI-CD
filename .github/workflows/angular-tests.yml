@@ -32,3 +32,4 @@ jobs:
         with:
           name: Angular Unit Tests
           path: front/coverage/bobapp/lcov-report/
+          reporter: jest-junit
