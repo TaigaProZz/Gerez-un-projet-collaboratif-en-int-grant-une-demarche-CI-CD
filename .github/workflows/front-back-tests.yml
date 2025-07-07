@@ -33,7 +33,7 @@ jobs:
           name: angular-results
           path: front/coverage/
 
-      - name: SonarQube Scan
+      - name: Run SonarCloud analysis for Frontend
         uses: sonarsource/sonarqube-scan-action@v4
         with:
           projectBaseDir: ./front
