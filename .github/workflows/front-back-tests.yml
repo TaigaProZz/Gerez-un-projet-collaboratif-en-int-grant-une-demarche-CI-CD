@@ -51,6 +51,7 @@ jobs:
 
 
  spring-tests:
+    needs: frontend-tests
     runs-on: ubuntu-latest
 
     steps:
